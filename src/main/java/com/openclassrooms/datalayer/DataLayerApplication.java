@@ -3,6 +3,8 @@ package com.openclassrooms.datalayer;
 import java.util.Arrays;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -31,6 +33,7 @@ public class DataLayerApplication implements CommandLineRunner {
 		SpringApplication.run(DataLayerApplication.class, args);
 	}
 
+	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
@@ -61,6 +64,15 @@ public class DataLayerApplication implements CommandLineRunner {
 		Iterable<Integer> idList = Arrays.asList(1,2,3);
 		Iterable<Product> productList = productService.getProducstById(idList);
 		productList.forEach(productElement-> System.out.println("-->" + productElement.getName()));
+
+		System.out.println("#Reucperer une catégorie par son ID");
+		final Integer CATEG_ID = 1;
+		Optional<Category> category = categoryService.getCategoryById(CATEG_ID);
+		if(category.isPresent()) {
+			System.out.println("-->La catégorie N:" + CATEG_ID + " = " + category.get().getName());
+		}
+		System.out.println("### La liste des produits de la categorie " + CATEG_ID);
+		category.get().getProducts().forEach(produit_cat->System.out.println("--> produit :" + produit_cat.getName()));
 	}
 
 }

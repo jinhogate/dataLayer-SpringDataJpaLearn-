@@ -1,10 +1,17 @@
 package com.openclassrooms.datalayer.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +25,30 @@ public class Category {
 
 	@Column(name="nom")
 	private String name;
+
+	@ManyToMany(
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			},
+			fetch = FetchType.LAZY
+			)
+	@JoinTable(
+			name = "categorie_produit",
+			joinColumns = @JoinColumn(name = "categorie_id"),
+			inverseJoinColumns = @JoinColumn(name = "produit_id")
+			)
+	private List<Product> products;
+
+
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 	public Integer getCategoryId() {
 		return categoryId;
