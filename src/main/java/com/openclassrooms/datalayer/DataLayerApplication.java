@@ -59,6 +59,8 @@ public class DataLayerApplication implements CommandLineRunner {
 		}
 		System.out.println("### La liste des comments du produit " + PRODUCT_ID);
 		product.get().getComments().forEach(comment->System.out.println("-->"+comment.getContent()));
+		System.out.println("### La liste des catégories du produit");
+		product.get().getCategories().forEach(cat->System.out.println("-->"+cat.getName()));
 
 		System.out.println("#Recuperer les produits par leur ID");
 		Iterable<Integer> idList = Arrays.asList(1,2,3);
