@@ -1,10 +1,13 @@
 package com.openclassrooms.datalayer.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,22 @@ public class Comment {
 
 	@Column(name="contenu")
 	private String content;
+
+	@ManyToOne(
+			cascade = CascadeType.ALL
+			)
+	@JoinColumn(name = "produit_id")
+	private Product product;
+
+
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 	public Integer getCommentId() {
 		return commentId;
