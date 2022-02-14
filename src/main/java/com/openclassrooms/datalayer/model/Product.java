@@ -47,7 +47,8 @@ public class Product {
 
 
 	@ManyToMany(
-			mappedBy = "products"
+			mappedBy = "products",
+			cascade = CascadeType.ALL
 			)
 	private List<Category> categories;
 
