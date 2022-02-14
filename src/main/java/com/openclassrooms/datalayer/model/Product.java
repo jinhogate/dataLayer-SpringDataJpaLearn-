@@ -8,11 +8,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -41,11 +39,10 @@ public class Product {
 	private Long cost;
 
 	@OneToMany(
+			mappedBy = "product",
 			cascade = CascadeType.ALL,
-			orphanRemoval = true,
-			fetch = FetchType.EAGER
+			orphanRemoval = true
 			)
-	@JoinColumn(name = "produit_id")
 	private List<Comment> comments;
 
 
@@ -104,5 +101,19 @@ public class Product {
 	public void setCost(Long cost) {
 		this.cost = cost;
 	}
+
+	/**
+	 * Les méthodes utilitaires
+	 * @param comment
+	 */
+	public void addComment(Comment comment) {
+		comments.add(comment);
+		comment.setProduct(this);
+	}
+	public void removeComment(Comment comment) {
+		comments.remove(comment);
+		comment.setProduct(null);
+	}
+
 
 }
