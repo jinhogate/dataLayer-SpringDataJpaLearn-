@@ -39,4 +39,13 @@ public class ProductService {
 	public Iterable<Product> getProducstById(Iterable<Integer> idList){
 		return productRepository.findAllById(idList);
 	}
+
+	/**
+	 * Création d'un nouveau produit
+	 * @param product
+	 * @return
+	 */
+	public Product addProduct(Product product) {
+		return productRepository.save(product);
+	}
 }

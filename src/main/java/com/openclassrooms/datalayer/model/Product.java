@@ -3,6 +3,7 @@
  */
 package com.openclassrooms.datalayer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -43,14 +44,14 @@ public class Product {
 			cascade = CascadeType.ALL,
 			orphanRemoval = true
 			)
-	private List<Comment> comments;
+	private List<Comment> comments = new ArrayList<Comment>();
 
 
 	@ManyToMany(
 			mappedBy = "products",
 			cascade = CascadeType.ALL
 			)
-	private List<Category> categories;
+	private List<Category> categories = new ArrayList<Category>();
 
 
 

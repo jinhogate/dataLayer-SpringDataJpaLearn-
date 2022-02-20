@@ -31,4 +31,14 @@ public class CategoryService {
 		return categoryRepository.findById(id);
 	}
 
+
+	/**
+	 * Ajouter une nouvelle catégorie
+	 * @param category
+	 * @return
+	 */
+	public Category addCategory(Category category) {
+		return categoryRepository.save(category);
+	}
+
 }

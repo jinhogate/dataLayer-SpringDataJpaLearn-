@@ -19,4 +19,13 @@ public class CommentService {
 	public Iterable<Comment> getAllComments(){
 		return commentRepository.findAll();
 	}
+
+	/**
+	 * Créer un nouveau commentaire
+	 * @param newComment
+	 * @return
+	 */
+	public Comment addComment(Comment newComment) {
+		return commentRepository.save(newComment);
+	}
 }

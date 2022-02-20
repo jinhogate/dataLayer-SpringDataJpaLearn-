@@ -1,5 +1,6 @@
 package com.openclassrooms.datalayer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,7 +39,7 @@ public class Category {
 			joinColumns = @JoinColumn(name = "categorie_id"),
 			inverseJoinColumns = @JoinColumn(name = "produit_id")
 			)
-	private List<Product> products;
+	private List<Product> products = new ArrayList<Product>();
 
 
 
@@ -70,7 +71,7 @@ public class Category {
 	 * Les méthodes utilitaires
 	 * @param comment
 	 */
-	public void addProduc(Product product) {
+	public void addProduct(Product product) {
 		products.add(product);
 		product.getCategories().add(this);
 	}
