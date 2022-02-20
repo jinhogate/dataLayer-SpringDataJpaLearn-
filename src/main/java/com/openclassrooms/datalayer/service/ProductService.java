@@ -48,4 +48,13 @@ public class ProductService {
 	public Product addProduct(Product product) {
 		return productRepository.save(product);
 	}
+
+	/**
+	 * Suppression d'u produit
+	 * @param idProduct
+	 * @return
+	 */
+	public void deleteProduct(Integer idProduct) {
+		productRepository.deleteById(idProduct);
+	}
 }

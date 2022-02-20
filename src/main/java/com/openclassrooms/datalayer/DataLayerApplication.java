@@ -7,8 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.openclassrooms.datalayer.model.Comment;
-import com.openclassrooms.datalayer.model.Product;
 import com.openclassrooms.datalayer.service.CategoryService;
 import com.openclassrooms.datalayer.service.CommentService;
 import com.openclassrooms.datalayer.service.ProductService;
@@ -90,13 +88,19 @@ public class DataLayerApplication implements CommandLineRunner {
 		//		Product produitRes = productService.addProduct(produit);
 
 		// Recuperer le produit sur lequel on veut ajouter le commentaire
-		Product product = productService.getProductById(7).get();
-		Comment newComment = new Comment();
-		newComment.setContent("Ce produit est très sucré et coute moins cher");
-		product.addComment(newComment);
+		//		Product product = productService.getProductById(7).get();
+		//		Comment newComment = new Comment();
+		//		newComment.setContent("Ce produit est très sucré et coute moins cher");
+		//		product.addComment(newComment);
+		//
+		//		commentService.addComment(newComment);
 
-		commentService.addComment(newComment);
+		//		Product existedProduct = productService.getProductById(7).get();
+		//		existedProduct.setCost((long) 300);
+		//
+		//		productService.addProduct(existedProduct);
 
+		productService.deleteProduct(7);
 	}
 
 }

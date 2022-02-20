@@ -16,11 +16,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 /**
  * @author jorji
  *
  */
 
+@DynamicUpdate // cette annotation permet lors de la maj des produits, de mettre à jour que les colonnes concernées
 @Entity
 @Table(name = "produit")
 public class Product {
@@ -49,7 +52,11 @@ public class Product {
 
 	@ManyToMany(
 			mappedBy = "products",
-			cascade = CascadeType.ALL
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE,
+					CascadeType.REFRESH
+			}
 			)
 	private List<Category> categories = new ArrayList<Category>();
 
