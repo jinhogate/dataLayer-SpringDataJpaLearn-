@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.openclassrooms.datalayer.model.Category;
+import com.openclassrooms.datalayer.model.Product;
 import com.openclassrooms.datalayer.service.CategoryService;
 import com.openclassrooms.datalayer.service.CommentService;
 import com.openclassrooms.datalayer.service.ProductService;
@@ -100,7 +102,35 @@ public class DataLayerApplication implements CommandLineRunner {
 		//
 		//		productService.addProduct(existedProduct);
 
-		productService.deleteProduct(7);
+		//		productService.deleteProduct(7);
+		//		Iterable<Product> products = productService.getProduitByNameNative("AssuranceAuTiersSimple");
+		//		products.forEach(product->System.out.println("-->"+product.getName()));
+		//		Iterable<Product> products2 = productService.getProduitByCategorieName("Standard");
+		//		products2.forEach(product->System.out.println("-->"+product.getName()));
+
+		Category newCat = new Category();
+		newCat.setName("Last category");
+
+		Product newProduct = new Product();
+		newProduct.setName("Assurance moto");
+		newProduct.setDescription("Assurance pour tous les automobilistes");
+		newProduct.setCost((long)1000);
+
+		newProduct.getCategories().add(newCat);
+		newCat.getProducts().add(newProduct);
+
+		productService.addProduct(newProduct);
+
+
+
+
+
+
+
+
+
+
+
 	}
 
 }

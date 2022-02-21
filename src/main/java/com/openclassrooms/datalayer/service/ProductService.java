@@ -57,4 +57,38 @@ public class ProductService {
 	public void deleteProduct(Integer idProduct) {
 		productRepository.deleteById(idProduct);
 	}
+
+	/**
+	 * Recupérer les produits à travers les noms
+	 * @param name
+	 * @return
+	 */
+	public Iterable<Product> getProductsByName(String name){
+		return productRepository.findByName(name);
+	}
+
+	public Iterable<Product> getProductsLike(String name){
+		return productRepository.findByNameLike(name);
+	}
+
+	public Iterable<Product> getProduitByCategorieName(String catName){
+		return productRepository.findByCategoriesName(catName);
+	}
+
+	public Iterable<Product> getProduitByNameJPQL(String catName){
+		return productRepository.findByNameJPQL(catName);
+	}
+
+
+	public Iterable<Product> getProduitByNameNative(String catName){
+		return productRepository.findByNameNativeQuery(catName);
+	}
+
+
+
+
+
+
+
+
 }
